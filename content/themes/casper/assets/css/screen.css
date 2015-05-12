@@ -2058,7 +2058,7 @@ body:not(.post-template) .post-title {
                 transform: translateY(-5px) rotate(-90deg);
     }
 }
-
+.post-excerpt img, .post-excerpt embed, .post-excerpt iframe { max-width: 100%; width: 100%;}
 
 /* ==========================================================================
    End of file. Animations should be the last thing here. Do not add stuff
