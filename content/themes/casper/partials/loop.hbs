@@ -9,8 +9,33 @@
     <header class="post-header">
         <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
     </header>
+    {{#if image}}
+    <div class="post-thumbnail" id="{{url}}-post-thumbnail">
+      <script type="text/javascript">
+      var mq = window.matchMedia( "(min-width: 500px)" );
+      if (mq.matches){
+        var thumbnailContainer = document.getElementById('{{url}}-post-thumbnail')
+        if (!String.prototype.contains) {
+          String.prototype.contains = function(s) {
+            return this.indexOf(s) > -1;
+          }
+        }
+        function homepagePostThumbnail (imgUrl) {
+            if (!imgUrl.contains("http://") && !imgUrl.contains("https://")) {
+              fireSizeUrl = "http://firesize.com/x150/g_center/{{@blog.url}}";
+            } else {
+              fireSizeUrl = "http://firesize.com/x150/g_center/";
+            }
+            thumbnailContainer.innerHTML = '<img src="'+fireSizeUrl+imgUrl+'" alt="{{title}}" />';
+        };
+        homepagePostThumbnail("{{image}}");
+      } //end mediaquery if
+      </script>
+
+    </div>
+    {{/if}}
     <section class="post-excerpt">
-    <img src={{image}} />
+
         <p>{{excerpt words="26"}} <a class="read-more" href="{{url}}">&raquo;</a></p>
     </section>
     <footer class="post-meta">
